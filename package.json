@@ -15,8 +15,7 @@
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "nodemon": "1.19.4",
-    "flowise": "2.2.6"
+    "nodemon": "1.19.4"
   },
   "scripts": {
     "start": "react-scripts start",
