@@ -1,55 +1,50 @@
 {
-  "name": "corona_app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.9.7",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.19.2",
-    "chart.js": "^2.9.3",
-    "classnames": "^2.2.6",
-    "next": "13.4.12",
-    "react": "18.2.0",
-    "react-chartjs-2": "^2.9.0",
-    "react-countup": "^4.3.3",
-    "react-dom": "18.2.0",
-    "react-scripts": "3.4.1",
-    "nodemon": "1.19.4"
-  },
-  "scripts": {
-    "dev": "next dev",
-    "start": "next start",
-    "build": "next build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": ["react-app", "next/core-web-vitals"]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/node": "^20.4.5",
-    "@types/react": "^18.2.17",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-next": "13.4.12",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
-    "typescript": "^5.1.6"
-  }
-}
+   "name": "corona_app",
+   "version": "0.1.0",
+   "private": true,
+   "dependencies": {
+     "@material-ui/core": "^4.9.7",
+     "@testing-library/jest-dom": "^4.2.4",
+     "@testing-library/react": "^9.5.0",
+     "@testing-library/user-event": "^7.2.1",
+     "axios": "^0.19.2",
+     "chart.js": "^2.9.3",
+     "classnames": "^2.2.6",
+     "next" : "15.2.2",
+     "react": "^16.13.1",
+     "react-chartjs-2": "^2.9.0",
+     "react-countup": "^4.3.3",
+     "react-dom": "^16.13.1",
+     "react-scripts": "3.4.1",
+     "nodemon": "1.19.4"
+   },
+   "scripts": {
+     "start": "react-scripts start",
+     "build": "react-scripts build",
+     "test": "react-scripts test",
+     "eject": "react-scripts eject"
+   },
+   "eslintConfig": {
+     "extends": "react-app"
+   },
+   "browserslist": {
+     "production": [
+       ">0.2%",
+       "not dead",
+       "not op_mini all"
+     ],
+     "development": [
+       "last 1 chrome version",
+       "last 1 firefox version",
+       "last 1 safari version"
+     ]
+   },
+   "devDependencies": {
+     "eslint": "^6.8.0",
+     "eslint-config-airbnb": "^18.1.0",
+     "eslint-plugin-import": "^2.20.2",
+     "eslint-plugin-jsx-a11y": "^6.2.3",
+     "eslint-plugin-react": "^7.19.0",
+     "eslint-plugin-react-hooks": "^2.5.1"
+   }
+ }
