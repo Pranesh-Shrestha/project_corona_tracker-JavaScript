@@ -2,6 +2,9 @@ name: Build JS Package For Secrets (STAGE)
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - slop
 
 permissions:
   checks: write
