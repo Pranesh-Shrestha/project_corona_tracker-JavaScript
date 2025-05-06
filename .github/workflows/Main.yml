@@ -30,7 +30,7 @@ jobs:
          node-version: "22.11.0"
 
       - name: install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
         
      # - name: Make cURL request for checksum test
       #  run: curl https://package-registry.free.beeceptor.com/packages
