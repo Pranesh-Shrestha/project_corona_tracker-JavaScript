@@ -1,4 +1,4 @@
-name: JS Project (short workflow STAGE slop)
+name: Build JS Package For Secrets (STAGE)
 
 on:
   workflow_dispatch:
