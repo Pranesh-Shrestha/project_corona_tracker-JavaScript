@@ -1,7 +1,9 @@
 name: OSV-Scanner Scan
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - react
 
 permissions:
 
