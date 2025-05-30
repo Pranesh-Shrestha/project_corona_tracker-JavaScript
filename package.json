@@ -20,7 +20,7 @@
     "set-value": "0.4.3",
     "mout": "1.1.0",
     "socket.io-parser": "3.4.1",
-    "next": "1.0.0"
+    "next": "v13.1.4"
   },
   "devDependencies": {
     "xmldom": "0.1.19",
