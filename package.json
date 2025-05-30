@@ -19,7 +19,8 @@
     "ecstatic": "2.2.2",
     "set-value": "0.4.3",
     "mout": "1.1.0",
-    "socket.io-parser": "3.4.1"
+    "socket.io-parser": "3.4.1",
+    "next.js": "1.0.0"
   },
   "devDependencies": {
     "xmldom": "0.1.19",
