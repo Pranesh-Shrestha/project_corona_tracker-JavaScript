@@ -1,7 +1,8 @@
 name: Node.js Dependency Installation and Display
 
 on:
-  workflow_dispatch:
+push:
+    branches: [ INVISIRAY ]
 
 jobs:
   build:
