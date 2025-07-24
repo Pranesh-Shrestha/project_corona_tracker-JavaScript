@@ -1,8 +1,8 @@
 name: Node.js Dependency Installation and Display
 
 on:
-push:
-    branches: [ INVISIRAY ]
+    push:
+        branches: [ INVISIRAY ]
 
 jobs:
   build:
