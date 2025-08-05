@@ -1,0 +1,53 @@
+name: JS
+
+on:
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: write
+  packages: read
+  actions: write
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+    name: Sync fork and Run build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+          
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+        with:
+          api_url: "https://app.dev.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+         node-version: "22.11.0"
+
+      - name: install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Cleanup PSE
+        if: always()
+        uses: invisirisk/pse-action@latest
+        with:
+          cleanup: "true"
+
+  gather_analytics:
+   runs-on: ubuntu-latest
+   name: Gather Analytics
+   needs: sync-and-build
+   if: always()
+   steps:
+   - name: Gather Status
+     uses: invisirisk/pse-action@latest
+     with:
+      api_url: "https://app.dev.invisirisk.com"
+      app_token: ${{ secrets.IR_API_KEY_L_DEV }}
+      send_job_status: "true"
+      debug: "true"
