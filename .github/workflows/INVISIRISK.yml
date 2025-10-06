@@ -38,12 +38,12 @@ jobs:
       - name: install gulp
         run: npm isntall -g gulp
         
+      - name: Install dependencies with Yarn
+        run: yarn install 
+        
       - name: build gulp
         run: gulp build
         
-      - name: Install dependencies with Yarn
-        run: yarn install 
-
       - name: Cleanup PSE
         if: always()
         uses: invisirisk/pse-action@dev-test
