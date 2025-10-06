@@ -32,6 +32,15 @@ jobs:
       - name: install yarn
         run: npm install -g yarn@1.22.22
         
+      - name: install @angular/cli
+        run: npm install -g @angular/cli
+      
+      - name: install gulp
+        run: npm isntall -g gulp
+        
+      - name: build gulp
+        run: gulp build
+        
       - name: Install dependencies with Yarn
         run: yarn install 
 
