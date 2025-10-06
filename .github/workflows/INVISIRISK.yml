@@ -29,20 +29,51 @@ jobs:
         with:
          node-version: "22.11.0"
 
-      - name: install yarn
-        run: npm install -g yarn@1.22.22
-        
-      - name: install @angular/cli
-        run: npm install -g @angular/cli
-      
-      - name: install gulp
-        run: npm install -g gulp
-        
-      - name: Install dependencies with Yarn
-        run: yarn install 
-        
-      - name: build gulp
-        run: gulp build
+      jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.11.0"
+
+      # Install global tools (Angular CLI, Yarn, Gulp CLI)
+      - name: Install global tools
+        run: |
+          npm install -g @angular/cli
+          npm install -g yarn
+          npm install -g gulp-cli
+
+      # Install dependencies in "angular" folder
+      - name: Install dependencies
+        working-directory: angular
+        run: yarn install
+
+      # Run custom script (must exist in package.json scripts)
+      - name: Run dynamic bundles
+        working-directory: angular
+        run: npm run create-dynamic-bundles
+
+      # Run gulp build using local gulp
+      - name: Run gulp build
+        working-directory: angular
+        run: npx gulp build
+
+      # Angular build
+      - name: Angular build
+        working-directory: angular
+        run: ng build #--configuration ${{ vars.ENV }} --build-optimizer --output-path=dist
+
+      # Copy web.config
+      - name: Copy web.config
+        working-directory: angular
+        run: cp ./web.config ./dist/web.config
+
         
       - name: Cleanup PSE
         if: always()
