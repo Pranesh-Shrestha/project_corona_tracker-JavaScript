@@ -67,7 +67,7 @@ jobs:
       # Angular build
       - name: Angular build
         working-directory: angular
-        run: ng build #--configuration ${{ vars.ENV }} --build-optimizer --output-path=dist
+        run: ng build
 
       # Copy web.config
       - name: Copy web.config
