@@ -10,78 +10,70 @@ permissions:
   actions: write
 
 jobs:
-  sync-and-build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Sync fork and Run build
+    name: Build Angular Project and Run PSE
 
     steps:
-      - name: Checkout repository
+      # Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
-          
+
+      # Setup PSE
       - name: Setup PSE
         uses: invisirisk/pse-action@dev-test
         with:
           api_url: "https://app.stage.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
 
+      # Setup Node.js
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "22.11.0"
 
-  build:
-    runs-on: ubuntu-latest
-    needs: sync-and-build
-    name: Build Angular project
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "22.11.0"
-
+      # Install global tools
       - name: Install global tools
         run: |
           npm install -g @angular/cli
           npm install -g yarn
           npm install -g gulp-cli
 
+      # Install project dependencies
       - name: Install dependencies
         working-directory: angular
         run: yarn install
 
+      # Run dynamic bundle script
       - name: Run dynamic bundles
         working-directory: angular
         run: npm run create-dynamic-bundles
 
+      # Run gulp build
       - name: Run gulp build
         working-directory: angular
         run: npx gulp build
 
+      # Angular build
       - name: Angular build
         working-directory: angular
-        run: ng build #--configuration ${{ vars.ENV }} --build-optimizer --output-path=dist
+        run: ng build
 
+      # Copy web.config to dist
       - name: Copy web.config
         working-directory: angular
         run: cp ./web.config ./dist/web.config
 
+      # Cleanup PSE
       - name: Cleanup PSE
         if: always()
         uses: invisirisk/pse-action@dev-test
         with:
           cleanup: "true"
 
-  gather_analytics:
-    runs-on: ubuntu-latest
-    name: Gather Analytics
-    needs: build
-    if: always()
-    steps:
-      - name: Gather Status
+      # Gather Analytics
+      - name: Gather Analytics
+        if: always()
         uses: invisirisk/pse-action@dev-test
         with:
           api_url: "https://app.stage.invisirisk.com"
