@@ -27,11 +27,12 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-         node-version: "22.11.0"
+          node-version: "22.11.0"
 
-      jobs:
   build:
     runs-on: ubuntu-latest
+    needs: sync-and-build
+    name: Build Angular project
 
     steps:
       - name: Checkout code
@@ -42,39 +43,32 @@ jobs:
         with:
           node-version: "22.11.0"
 
-      # Install global tools (Angular CLI, Yarn, Gulp CLI)
       - name: Install global tools
         run: |
           npm install -g @angular/cli
           npm install -g yarn
           npm install -g gulp-cli
 
-      # Install dependencies in "angular" folder
       - name: Install dependencies
         working-directory: angular
         run: yarn install
 
-      # Run custom script (must exist in package.json scripts)
       - name: Run dynamic bundles
         working-directory: angular
         run: npm run create-dynamic-bundles
 
-      # Run gulp build using local gulp
       - name: Run gulp build
         working-directory: angular
         run: npx gulp build
 
-      # Angular build
       - name: Angular build
         working-directory: angular
-        run: ng build
+        run: ng build #--configuration ${{ vars.ENV }} --build-optimizer --output-path=dist
 
-      # Copy web.config
       - name: Copy web.config
         working-directory: angular
         run: cp ./web.config ./dist/web.config
 
-        
       - name: Cleanup PSE
         if: always()
         uses: invisirisk/pse-action@dev-test
@@ -82,15 +76,15 @@ jobs:
           cleanup: "true"
 
   gather_analytics:
-   runs-on: ubuntu-latest
-   name: Gather Analytics
-   needs: sync-and-build
-   if: always()
-   steps:
-   - name: Gather Status
-     uses: invisirisk/pse-action@dev-test
-     with:
-      api_url: "https://app.stage.invisirisk.com"
-      app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
-      send_job_status: "true"
-      debug: "true"
+    runs-on: ubuntu-latest
+    name: Gather Analytics
+    needs: build
+    if: always()
+    steps:
+      - name: Gather Status
+        uses: invisirisk/pse-action@dev-test
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
+          send_job_status: "true"
+          debug: "true"
