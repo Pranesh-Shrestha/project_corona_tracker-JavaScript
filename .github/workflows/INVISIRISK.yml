@@ -46,22 +46,22 @@ jobs:
 
       # Run dynamic bundle script
       - name: Run dynamic bundles
-        working-directory: angular
+       # working-directory: angular
         run: npm run create-dynamic-bundles
 
       # Run gulp build
       - name: Run gulp build
-        working-directory: angular
+       # working-directory: angular
         run: npx gulp build
 
       # Angular build
       - name: Angular build
-        working-directory: angular
+      #  working-directory: angular
         run: ng build
 
       # Copy web.config to dist
       - name: Copy web.config
-        working-directory: angular
+       # working-directory: angular
         run: cp ./web.config ./dist/web.config
 
       # Cleanup PSE
