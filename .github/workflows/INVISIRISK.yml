@@ -41,23 +41,7 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        # working-directory: angular
         run: yarn install
-
-      # Run gulp build
-      - name: Run gulp build
-       # working-directory: angular
-        run: npx gulp build
-
-      # Angular build
-      - name: Angular build
-      #  working-directory: angular
-        run: ng build
-
-      # Copy web.config to dist
-      - name: Copy web.config
-       # working-directory: angular
-        run: cp ./web.config ./dist/web.config
 
       # Cleanup PSE
       - name: Cleanup PSE
