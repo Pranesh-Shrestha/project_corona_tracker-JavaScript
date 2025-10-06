@@ -41,7 +41,7 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        working-directory: angular
+        # working-directory: angular
         run: yarn install
 
       # Run dynamic bundle script
