@@ -1,0 +1,11 @@
+{
+  "name": "gulp-sample-project",
+  "version": "1.0.0",
+  "description": "Simple project with gulp",
+  "scripts": {
+    "build": "gulp"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
