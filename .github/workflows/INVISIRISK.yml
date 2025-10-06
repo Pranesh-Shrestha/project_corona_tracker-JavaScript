@@ -44,11 +44,6 @@ jobs:
         # working-directory: angular
         run: yarn install
 
-      # Run dynamic bundle script
-      - name: Run dynamic bundles
-       # working-directory: angular
-        run: npm run create-dynamic-bundles
-
       # Run gulp build
       - name: Run gulp build
        # working-directory: angular
