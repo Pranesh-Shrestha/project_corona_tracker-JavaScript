@@ -50,12 +50,16 @@ jobs:
         with:
           cleanup: "true"
 
-      # Gather Analytics
-      - name: Gather Analytics
-        if: always()
-        uses: invisirisk/pse-action@dev-test
-        with:
-          api_url: "https://app.stage.invisirisk.com"
-          app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
-          send_job_status: "true"
-          debug: "true"
+  gather_analytics:
+   runs-on: ubuntu-latest
+   name: Gather Analytics
+   needs: build-and-deploy
+   if: always()
+   steps:
+   - name: Gather Status
+     uses: invisirisk/pse-action@dev-test
+     with:
+      api_url: "https://app.stage.invisirisk.com"
+      app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
+      send_job_status: "true"
+      debug: "true"
