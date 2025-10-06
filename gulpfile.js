@@ -1,7 +1,11 @@
 // gulpfile.js
-const gulp = require("gulp");
+const gulp = require('gulp');
 
-gulp.task("default", function (done) {
-  console.log("Gulp is working!");
+// Placeholder build task
+gulp.task('build', function(done) {
+  console.log("✅ Placeholder gulp build task ran successfully!");
   done();
 });
+
+// Default task points to build
+gulp.task('default', gulp.series('build'));
