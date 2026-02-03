@@ -1,0 +1,24 @@
+{
+  "name": "javascript-boilerplate",
+  "version": "1.0.0",
+  "description": "JavaScript boilerplate for security testing",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "build": "echo 'Build complete'",
+    "lint": "eslint src/"
+  },
+  "keywords": ["boilerplate", "security-testing"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.56.0"
+  }
+}
