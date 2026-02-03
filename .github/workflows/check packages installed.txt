@@ -23,4 +23,4 @@ jobs:
       - name: Display Installed Dependencies
         run: |
           echo "Installed dependencies and their transitive dependencies:"
-          npm ls --all --depth=10 # Adjust the depth for more or fewer dependencies
+          npm ls --all --long #--depth=10 # Adjust the depth for more or fewer dependencies
