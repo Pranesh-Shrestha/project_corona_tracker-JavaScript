@@ -21,10 +21,10 @@ jobs:
 
       # Setup PSE
       - name: Setup PSE
-        uses: invisirisk/pse-action@dev-test
+        uses: invisirisk/pse-action@develop
         with:
           api_url: "https://app.stage.invisirisk.com"
-          app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
+          app_token: ${{ secrets.IR_API_KEY_DEP_STAGE }}
 
       # Setup Node.js
       - name: Use Node.js
@@ -33,20 +33,20 @@ jobs:
           node-version: "22.11.0"
 
       # Install global tools
-      - name: Install global tools
-        run: |
-          npm install -g @angular/cli
-          npm install -g yarn
-          npm install -g gulp-cli
+      # - name: Install global tools
+      #   run: |
+      #     npm install -g @angular/cli
+      #     npm install -g yarn
+      #     npm install -g gulp-cli
 
       # Install project dependencies
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       # Cleanup PSE
       - name: Cleanup PSE
         if: always()
-        uses: invisirisk/pse-action@dev-test
+        uses: invisirisk/pse-action@develop
         with:
           cleanup: "true"
 
@@ -57,9 +57,9 @@ jobs:
    if: always()
    steps:
    - name: Gather Status
-     uses: invisirisk/pse-action@dev-test
+     uses: invisirisk/pse-action@develop
      with:
       api_url: "https://app.stage.invisirisk.com"
-      app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
+      app_token: ${{ secrets.IR_API_KEY_DEP_STAGE }}
       send_job_status: "true"
       debug: "true"
