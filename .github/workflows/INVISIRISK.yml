@@ -41,7 +41,7 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       # Cleanup PSE
       - name: Cleanup PSE
