@@ -19,12 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Setup PSE
-      - name: Setup PSE
-        uses: invisirisk/pse-action@develop
-        with:
-          api_url: "https://app.stage.invisirisk.com"
-          app_token: ${{ secrets.IR_API_KEY_DEP_STAGE }}
+
 
       # Setup Node.js
       - name: Use Node.js
@@ -38,6 +33,13 @@ jobs:
       #     npm install -g @angular/cli
       #     npm install -g yarn
       #     npm install -g gulp-cli
+
+          # Setup PSE
+      - name: Setup PSE
+        uses: invisirisk/pse-action@develop
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_DEP_STAGE }}
 
       # Install project dependencies
       - name: Install dependencies
