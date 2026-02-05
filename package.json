@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "prisma": "6.1.0",
+    "php": "1.0.2",
+    "redis": "2.8.0",
     "sushi": "4.1.25",
     "tsds-web-test-runner": "1.12.19",
     "vxe-table": "4.10.2",
