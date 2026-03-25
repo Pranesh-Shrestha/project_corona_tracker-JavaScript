@@ -1,1 +1,52 @@
+name: JS x python x Dependency
 
+on:
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: write
+  packages: read
+  actions: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build Angular Project and Run PSE
+
+    steps:
+    # Setup PSE
+      - name: Setup PSE
+        uses: invisirisk/pse-action@latest
+        with:
+          api_url: "https://app.stage.invisirisk.com"
+          app_token: ${{ secrets.IR_API_KEY }}
+
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.11.0"
+
+      - name: Use Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+                
+      - name: Install dependencies (Python)
+        run: pip install -r requirements.txt
+
+      # Install project dependencies (NPM)
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      # Cleanup PSE
+      - name: Cleanup PSE
+        if: always()
+        uses: invisirisk/pse-action@latest
+        with:
+          cleanup: "true"
