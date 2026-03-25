@@ -1,4 +1,4 @@
-name: JS
+name: JS x Dependency
 
 on:
   workflow_dispatch:
@@ -19,27 +19,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-
-
       # Setup Node.js
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "22.11.0"
 
-      # Install global tools
-      # - name: Install global tools
-      #   run: |
-      #     npm install -g @angular/cli
-      #     npm install -g yarn
-      #     npm install -g gulp-cli
-
           # Setup PSE
       - name: Setup PSE
-        uses: invisirisk/pse-action@develop
+        uses: invisirisk/pse-action@latest
         with:
           api_url: "https://app.stage.invisirisk.com"
-          app_token: ${{ secrets.IR_API_KEY_DEP_STAGE }}
+          app_token: ${{ secrets.IR_API_KEY }}
 
       # Install project dependencies
       - name: Install dependencies
@@ -48,20 +39,6 @@ jobs:
       # Cleanup PSE
       - name: Cleanup PSE
         if: always()
-        uses: invisirisk/pse-action@develop
+        uses: invisirisk/pse-action@latest
         with:
           cleanup: "true"
-
-  gather_analytics:
-   runs-on: ubuntu-latest
-   name: Gather Analytics
-   needs: build-and-deploy
-   if: always()
-   steps:
-   - name: Gather Status
-     uses: invisirisk/pse-action@develop
-     with:
-      api_url: "https://app.stage.invisirisk.com"
-      app_token: ${{ secrets.IR_API_KEY_DEP_STAGE }}
-      send_job_status: "true"
-      debug: "true"
