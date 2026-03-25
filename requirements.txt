@@ -1,0 +1,4 @@
+tensorflow==2.3.0
+salt==2015.8.0rc1
+pillow==2.3.0
+redis==5.0.1
