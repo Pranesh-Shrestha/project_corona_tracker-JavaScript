@@ -3,6 +3,7 @@
 ### [Live Site](https://covid19statswebsite.netlify.com/)
 
 ![COVID-19 Tracker](https://i.ibb.co/X87BqVY/Screenshot-2020-04-13-at-10-14-58.png)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPranesh-Shrestha%2Fproject_corona_tracker-JavaScript.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FPranesh-Shrestha%2Fproject_corona_tracker-JavaScript?ref=badge_shield)
 
 ### [🌟 Become a top 1% Next.js 13 developer in only one course](https://jsmastery.pro/next13)
 ### [🚀 Land your dream programming job in 6 months](https://jsmastery.pro/masterclass)
@@ -21,3 +22,7 @@ API used: https://covid19.mathdro.id/api
 
 Setup:
 - run ```npm i && npm start```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FPranesh-Shrestha%2Fproject_corona_tracker-JavaScript.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FPranesh-Shrestha%2Fproject_corona_tracker-JavaScript?ref=badge_large)
