@@ -37,7 +37,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: show dependency tree
-        run: npm ls
+        run: npm ls --all
 
       # Cleanup PSE
       - name: Cleanup PSE
