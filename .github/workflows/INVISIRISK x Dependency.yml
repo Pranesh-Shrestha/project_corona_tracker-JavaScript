@@ -31,7 +31,7 @@ jobs:
         with:
           api_url: "https://app.stage.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_JS }}
-          mode: "docker-intercept"
+          #mode: "docker-intercept"
 
       # Install project dependencies
       - name: Install dependencies
