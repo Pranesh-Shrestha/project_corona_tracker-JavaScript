@@ -27,7 +27,7 @@ jobs:
 
           # Setup PSE
       - name: Setup PSE
-        uses: invisirisk/pse-action@latest
+        uses: invisirisk/pse-action@develop
         with:
           api_url: "https://app.dev.invisirisk.com"
           app_token: ${{ secrets.IR_API_KEY_JS }}
@@ -43,6 +43,6 @@ jobs:
       # Cleanup PSE
       - name: Cleanup PSE
         if: always()
-        uses: invisirisk/pse-action@latest
+        uses: invisirisk/pse-action@develop
         with:
           cleanup: "true"
