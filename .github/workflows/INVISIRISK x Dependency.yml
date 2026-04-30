@@ -35,7 +35,7 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install
 
       - name: show dependency tree
         run: npm ls --all
