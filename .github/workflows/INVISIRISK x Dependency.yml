@@ -35,7 +35,7 @@ jobs:
 
       # Install project dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: show dependency tree
         run: npm ls --all
