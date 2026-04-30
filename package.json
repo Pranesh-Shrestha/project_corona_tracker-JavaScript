@@ -13,7 +13,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "webpack": "5.99.9",
-     "gulp": "^4.0.2"
+    "webpack": "5.99.9"
   }
 }
